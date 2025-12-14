@@ -4,13 +4,25 @@
     "meta_description": "A free and open-source landing page template for your SaaS business, built with React, TypeScript, Shadcn UI, and Tailwind CSS."
   },
   "Navbar": {
+    "home": "Home",
     "sign_in": "Sign In",
     "sign_up": "Sign Up",
-    "product": "Product",
-    "docs": "Docs",
-    "blog": "Blog",
-    "community": "Community",
-    "company": "Company"
+    "sign_out": "Sign Out",
+    "dashboard": "Dashboard",
+    "create_label": "Create a Label",
+    "products": "Products",
+    "products_food_nutrition": "Food Nutrition Labelling",
+    "products_supplements": "Supplements Formulation and Labelling",
+    "industries": "Industries",
+    "industries_food_manufacturers": "Food Manufacturers",
+    "industries_hospitality": "Hospitality & Hotels",
+    "industries_supplement_manufacturers": "Supplement Manufacturers",
+    "industries_meal_plan": "Meal Plan",
+    "industries_restaurants": "Restaurants and Food Service",
+    "industries_hospitals": "Hospitals & Healthcare",
+    "pricing": "Pricing",
+    "hire_expert": "Hire an Expert",
+    "resources": "Resources"
   },
   "Hero": {
     "follow_twitter": "Follow @Ixartz on Twitter",
@@ -66,11 +78,10 @@
     "button_text": "Star on GitHub"
   },
   "Footer": {
-    "product": "Product",
-    "docs": "Docs",
-    "blog": "Blog",
-    "community": "Community",
-    "company": "Company",
+    "products": "Products",
+    "industries": "Industries",
+    "pricing": "Pricing",
+    "resources": "Resources",
     "terms_of_service": "Terms Of Service",
     "privacy_policy": "Privacy Policy",
     "designed_by": "Designed by <author></author>."
@@ -85,6 +96,19 @@
   "SignUp": {
     "meta_title": "Sign up",
     "meta_description": "Effortlessly create an account through our intuitive sign-up process."
+  },
+  "CreateLabel": {
+    "meta_title": "Create a Label",
+    "meta_description": "Create and manage your food labels with ease.",
+    "sidebar_title": "Label Tools",
+    "recipes": "Recipes",
+    "costs": "Costs",
+    "custom_ingredients": "Custom Ingredients",
+    "custom_reports": "Custom Reports",
+    "welcome_title": "Welcome to Label Creator",
+    "welcome_description": "Select an option from the sidebar to get started with creating your food labels.",
+    "get_started_title": "Ready to create your label?",
+    "get_started_description": "Choose a section from the sidebar to begin managing your recipes, costs, ingredients, and reports."
   },
   "DashboardLayout": {
     "home": "Home",

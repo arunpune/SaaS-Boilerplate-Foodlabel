@@ -6,6 +6,7 @@ import { useLocale } from 'next-intl';
 
 import { ActiveLink } from '@/components/ActiveLink';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
+import { Logo } from '@/components/Logo';
 import { ToggleMenuButton } from '@/components/ToggleMenuButton';
 import {
   DropdownMenu,
@@ -14,7 +15,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Separator } from '@/components/ui/separator';
-import { Logo } from '@/templates/Logo';
 import { getI18nPath } from '@/utils/Helpers';
 
 export const DashboardHeader = (props: {
