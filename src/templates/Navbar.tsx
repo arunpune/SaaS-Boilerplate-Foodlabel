@@ -12,44 +12,51 @@ export const Navbar = () => {
   const t = useTranslations('Navbar');
 
   return (
-    <Section className="px-3 py-6">
+    <Section className="bg-white px-3 py-4">
       <CenteredMenu
         logo={<Logo />}
         rightMenu={(
           <>
-            {/* PRO: Dark mode toggle button */}
             <li data-fade>
               <LocaleSwitcher />
             </li>
-            <li className="ml-1 mr-2.5" data-fade>
-              <Link href="/sign-in">{t('sign_in')}</Link>
-            </li>
             <li>
-              <Link className={buttonVariants()} href="/sign-up">
-                {t('sign_up')}
+              <Link 
+                className={buttonVariants({ variant: 'default', className: 'bg-red-500 hover:bg-red-600 text-white px-6' })} 
+                href="/recipe-setup"
+              >
+                Create a free label
+              </Link>
+            </li>
+            <li className="ml-2">
+              <Link 
+                className={buttonVariants({ variant: 'outline', className: 'border-2 border-gray-800 text-gray-800 hover:bg-gray-100 px-6' })} 
+                href="/sign-in"
+              >
+                Login
               </Link>
             </li>
           </>
         )}
       >
         <li>
-          <Link href="/sign-up">{t('product')}</Link>
+          <Link href="#" className="hover:text-gray-600">Products</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('docs')}</Link>
+          <Link href="#" className="hover:text-gray-600">Industries</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('blog')}</Link>
+          <Link href="#" className="hover:text-gray-600">Pricing</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('community')}</Link>
+          <Link href="#" className="hover:text-gray-600">Hire an Expert</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('company')}</Link>
+          <Link href="#" className="hover:text-gray-600">Resources</Link>
         </li>
       </CenteredMenu>
     </Section>
