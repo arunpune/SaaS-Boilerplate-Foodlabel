@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.0.1...v1.0.2) (2025-12-29)
+
+
+### Bug Fixes
+
+* add .env files to .gitignore to prevent API exposure ([f984814](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/commit/f9848146c907a7c0129c9403dd855b79e0e55f19))
+
 ## [1.0.1](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.0.0...v1.0.1) (2025-12-29)
 
 
