@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.0.0...v1.1.0) (2025-12-29)
+
+
+### Features
+
+* implement custom navigation and chatbot assistant ([#3](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/issues/3)) ([a536a57](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/commit/a536a578ee7e0b3357ea89e5882782829a19a97e))
+
 # 1.0.0 (2025-11-08)
 
 
