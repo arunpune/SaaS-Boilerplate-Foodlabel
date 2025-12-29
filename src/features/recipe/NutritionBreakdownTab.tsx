@@ -101,7 +101,7 @@ export const NutritionBreakdownTab = () => {
             <h3 className="text-lg font-semibold text-slate-900">Recipe Weight in Grams</h3>
             <select
               value={weightUnit}
-              onChange={(e) => setWeightUnit(e.target.value)}
+              onChange={e => setWeightUnit(e.target.value)}
               className="rounded border border-slate-300 px-3 py-1 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
             >
               <option>Weight (g)</option>
@@ -147,8 +147,8 @@ export const NutritionBreakdownTab = () => {
               <svg viewBox="0 0 200 200" className="size-full">
                 <circle cx="100" cy="100" r="80" fill="#94a3b8" />
                 <path d="M 100 100 L 100 20 A 80 80 0 0 1 180 100 Z" fill="#64748b" />
-                <text x="60" y="110" className="text-xs fill-white">0.0 g</text>
-                <text x="140" y="110" className="text-xs fill-white">0.0 g</text>
+                <text x="60" y="110" className="fill-white text-xs">0.0 g</text>
+                <text x="140" y="110" className="fill-white text-xs">0.0 g</text>
               </svg>
             </div>
           </div>
@@ -172,7 +172,7 @@ export const NutritionBreakdownTab = () => {
             <h3 className="text-lg font-semibold text-slate-900">Recipe Calories in kcal</h3>
             <select
               value={caloriesUnit}
-              onChange={(e) => setCaloriesUnit(e.target.value)}
+              onChange={e => setCaloriesUnit(e.target.value)}
               className="rounded border border-slate-300 px-3 py-1 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
             >
               <option>Calories (kcal)</option>
@@ -241,7 +241,7 @@ export const NutritionBreakdownTab = () => {
               <span className="text-sm text-slate-600">Show:</span>
               <select
                 value={nutrientColumns}
-                onChange={(e) => setNutrientColumns(Number(e.target.value))}
+                onChange={e => setNutrientColumns(Number(e.target.value))}
                 className="rounded border border-slate-300 px-3 py-1 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
               >
                 <option value="0">0 Columns</option>
@@ -255,7 +255,7 @@ export const NutritionBreakdownTab = () => {
               <span className="text-sm text-slate-600">Show:</span>
               <select
                 value={nutrientCount}
-                onChange={(e) => setNutrientCount(Number(e.target.value))}
+                onChange={e => setNutrientCount(Number(e.target.value))}
                 className="rounded border border-slate-300 px-3 py-1 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
               >
                 <option value="4">4 Nutrients</option>
@@ -367,7 +367,7 @@ export const NutritionBreakdownTab = () => {
               <span className="text-sm text-slate-600">Show:</span>
               <select
                 value={allergenColumns}
-                onChange={(e) => setAllergenColumns(Number(e.target.value))}
+                onChange={e => setAllergenColumns(Number(e.target.value))}
                 className="rounded border border-slate-300 px-3 py-1 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
               >
                 <option value="0">0 Columns</option>

@@ -1,9 +1,6 @@
 'use client';
 
-import Link from 'next/link';
-
 import { DashboardSidebar } from '@/components/DashboardSidebar';
-import { ChatWidget } from '@/components/ChatWidget';
 import { buttonVariants } from '@/components/ui/buttonVariants';
 
 export const CustomIngredientsPage = () => {

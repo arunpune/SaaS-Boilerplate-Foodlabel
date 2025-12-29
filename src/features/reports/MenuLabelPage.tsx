@@ -1,10 +1,8 @@
 'use client';
 
-import Link from 'next/link';
-
+import { ChatWidget } from '@/components/ChatWidget';
 import { DashboardSidebar } from '@/components/DashboardSidebar';
 import { buttonVariants } from '@/components/ui/buttonVariants';
-import { ChatWidget } from '@/components/ChatWidget';
 
 export const MenuLabelPage = () => (
   <div className="flex min-h-screen">

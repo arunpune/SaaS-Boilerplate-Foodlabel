@@ -105,7 +105,8 @@ const results = await fdaApi.search({
 ```tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import { fdaApi } from '@/libs/FdaApi';
 import type { FdaEnforcementRecord } from '@/types/FdaApi';
 
@@ -128,11 +129,13 @@ export default function FdaRecallsList() {
     fetchRecalls();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
-      {recalls.map((recall) => (
+      {recalls.map(recall => (
         <div key={recall.recall_number}>
           <h3>{recall.recalling_firm}</h3>
           <p>{recall.product_description}</p>
@@ -155,7 +158,7 @@ export default async function RecallsPage() {
   return (
     <div>
       <h1>Recent FDA Recalls</h1>
-      {response.results.map((recall) => (
+      {response.results.map(recall => (
         <div key={recall.recall_number}>
           <h3>{recall.recalling_firm}</h3>
           <p>{recall.product_description}</p>
@@ -171,11 +174,12 @@ export default async function RecallsPage() {
 ```typescript
 // src/app/api/fda-recalls/route.ts
 import { NextResponse } from 'next/server';
+
 import { fdaApi } from '@/libs/FdaApi';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const limit = parseInt(searchParams.get('limit') || '10');
+  const limit = Number.parseInt(searchParams.get('limit') || '10');
 
   try {
     const response = await fdaApi.getRecentRecalls(limit);
@@ -214,28 +218,28 @@ The API supports searching on these fields:
 
 ### Exact Match
 ```typescript
-search: 'recalling_firm:"Company Name"'
+search: 'recalling_firm:"Company Name"';
 ```
 
 ### Wildcard
 ```typescript
-search: 'product_description:chicken*'
+search: 'product_description:chicken*';
 ```
 
 ### AND/OR Operators
 ```typescript
-search: 'state:CA AND classification:"Class I"'
-search: 'state:CA OR state:NY'
+search: 'state:CA AND classification:"Class I"';
+search: 'state:CA OR state:NY';
 ```
 
 ### Date Ranges
 ```typescript
-search: 'report_date:[2024-01-01 TO 2024-12-31]'
+search: 'report_date:[2024-01-01 TO 2024-12-31]';
 ```
 
 ### NOT Operator
 ```typescript
-search: 'state:CA NOT classification:"Class III"'
+search: 'state:CA NOT classification:"Class III"';
 ```
 
 ## 📊 Response Structure
@@ -294,10 +298,10 @@ import { NextResponse } from 'next/server';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const fdaUrl = `https://api.fda.gov/food/enforcement.json?${searchParams}`;
-  
+
   const response = await fetch(fdaUrl);
   const data = await response.json();
-  
+
   return NextResponse.json(data);
 }
 ```
@@ -306,7 +310,7 @@ export async function GET(request: Request) {
 All responses are fully typed. Use TypeScript autocomplete to explore available fields:
 
 ```typescript
-import type { FdaEnforcementRecord, FdaApiResponse } from '@/types/FdaApi';
+import type { FdaApiResponse, FdaEnforcementRecord } from '@/types/FdaApi';
 ```
 
 ## 📝 Example Queries

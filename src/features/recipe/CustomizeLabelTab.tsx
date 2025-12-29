@@ -51,7 +51,7 @@ export const CustomizeLabelTab = () => {
       {/* Sub Tabs */}
       <div className="border-b border-slate-200">
         <div className="flex gap-8 overflow-x-auto">
-          {subTabs.map((tab) => (
+          {subTabs.map(tab => (
             <button
               key={tab.id}
               type="button"
@@ -80,7 +80,7 @@ export const CustomizeLabelTab = () => {
                 </label>
                 <select
                   value={labelStyle}
-                  onChange={(e) => setLabelStyle(e.target.value)}
+                  onChange={e => setLabelStyle(e.target.value)}
                   className="w-full rounded border border-slate-300 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                 >
                   <option>Standard FDA Label</option>
@@ -103,7 +103,7 @@ export const CustomizeLabelTab = () => {
                 <input
                   type="text"
                   value={servingSize}
-                  onChange={(e) => setServingSize(e.target.value)}
+                  onChange={e => setServingSize(e.target.value)}
                   className="w-full rounded border border-slate-300 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   placeholder="Enter serving size"
                 />
@@ -129,37 +129,37 @@ export const CustomizeLabelTab = () => {
           {activeSubTab === 'language' && (
             <div className="space-y-6">
               <div className="space-y-4">
-                <label className="flex items-center gap-3 cursor-pointer">
+                <label className="flex cursor-pointer items-center gap-3">
                   <input
                     type="radio"
                     name="language"
                     value="english"
                     checked={selectedLanguage === 'english'}
-                    onChange={(e) => setSelectedLanguage(e.target.value)}
+                    onChange={e => setSelectedLanguage(e.target.value)}
                     className="size-5 border-slate-300 text-teal-700 focus:ring-2 focus:ring-teal-500"
                   />
                   <span className="text-base text-slate-700">English</span>
                 </label>
 
-                <label className="flex items-center gap-3 cursor-pointer">
+                <label className="flex cursor-pointer items-center gap-3">
                   <input
                     type="radio"
                     name="language"
                     value="arabic"
                     checked={selectedLanguage === 'arabic'}
-                    onChange={(e) => setSelectedLanguage(e.target.value)}
+                    onChange={e => setSelectedLanguage(e.target.value)}
                     className="size-5 border-slate-300 text-teal-700 focus:ring-2 focus:ring-teal-500"
                   />
                   <span className="text-base text-slate-700">Arabic</span>
                 </label>
 
-                <label className="flex items-center gap-3 cursor-pointer">
+                <label className="flex cursor-pointer items-center gap-3">
                   <input
                     type="radio"
                     name="language"
                     value="spanish"
                     checked={selectedLanguage === 'spanish'}
-                    onChange={(e) => setSelectedLanguage(e.target.value)}
+                    onChange={e => setSelectedLanguage(e.target.value)}
                     className="size-5 border-slate-300 text-teal-700 focus:ring-2 focus:ring-teal-500"
                   />
                   <span className="text-base text-slate-700">Spanish</span>
@@ -180,7 +180,11 @@ export const CustomizeLabelTab = () => {
             <div className="space-y-6">
               <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
                 <p className="text-sm leading-relaxed text-slate-700">
-                  Utilize this manual override feature to get full control over the nutrition label, allowing you to input and display your preferred values. Please bear in mind that the values entered through this feature <span className="italic">are not subject to validation</span> by our software. This feature is available to provide you with complete flexibility for making final adjustments to your label.
+                  Utilize this manual override feature to get full control over the nutrition label, allowing you to input and display your preferred values. Please bear in mind that the values entered through this feature
+                  {' '}
+                  <span className="italic">are not subject to validation</span>
+                  {' '}
+                  by our software. This feature is available to provide you with complete flexibility for making final adjustments to your label.
                 </p>
               </div>
 
@@ -523,7 +527,7 @@ export const CustomizeLabelTab = () => {
                 <h3 className="text-base font-semibold text-slate-900">Edit Ingredients List</h3>
                 <textarea
                   value={ingredientsList}
-                  onChange={(e) => setIngredientsList(e.target.value)}
+                  onChange={e => setIngredientsList(e.target.value)}
                   rows={4}
                   className="w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   placeholder="Enter ingredients..."
@@ -546,7 +550,7 @@ export const CustomizeLabelTab = () => {
                   </svg>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
-                  {selectedAllergens.map((allergen) => (
+                  {selectedAllergens.map(allergen => (
                     <span
                       key={allergen}
                       className="inline-flex items-center gap-1.5 rounded bg-slate-100 px-3 py-1.5 text-sm text-slate-700"
@@ -566,7 +570,7 @@ export const CustomizeLabelTab = () => {
                   <input
                     type="text"
                     placeholder="Select allergens"
-                    className="flex-1 min-w-[200px] rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+                    className="min-w-[200px] flex-1 rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   />
                 </div>
                 <button
@@ -583,7 +587,7 @@ export const CustomizeLabelTab = () => {
                 <h3 className="text-base font-semibold text-slate-900">Add Additional Allergen Statements (ex. May Contain Statements)</h3>
                 <textarea
                   value={allergenStatements}
-                  onChange={(e) => setAllergenStatements(e.target.value)}
+                  onChange={e => setAllergenStatements(e.target.value)}
                   rows={6}
                   className="w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   placeholder="Enter additional allergen statements..."
@@ -607,7 +611,7 @@ export const CustomizeLabelTab = () => {
                   }`}
                 >
                   <span
-                    className={`inline-block size-4 transform rounded-full bg-white transition-transform ${
+                    className={`inline-block size-4 rounded-full bg-white transition-transform${
                       aggregateSubRecipes ? 'translate-x-6' : 'translate-x-1'
                     }`}
                   />
@@ -646,121 +650,125 @@ export const CustomizeLabelTab = () => {
 
         {/* Right Side - Nutrition Facts Preview */}
         {activeSubTab !== 'nutrients' && (
-        <div className="flex justify-center lg:justify-end">
-          <div className="w-full max-w-md rounded-lg border-4 border-black bg-white p-4 font-sans">
-            <div className="border-b-8 border-black pb-1">
-              <h2 className="text-4xl font-black">Nutrition Facts</h2>
-              <p className="text-sm">1 Serving Per Container</p>
-            </div>
-            
-            <div className="border-b-4 border-black py-1">
-              <div className="flex items-baseline justify-between">
-                <span className="text-sm font-bold">Serving Size</span>
-                <span className="text-xl font-bold">0g</span>
+          <div className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-md rounded-lg border-4 border-black bg-white p-4 font-sans">
+              <div className="border-b-8 border-black pb-1">
+                <h2 className="text-4xl font-black">Nutrition Facts</h2>
+                <p className="text-sm">1 Serving Per Container</p>
               </div>
-            </div>
 
-            <div className="border-b-8 border-black py-1">
-              <div className="flex items-baseline justify-between">
-                <span className="text-sm font-bold">Amount Per Serving</span>
-              </div>
-              <div className="flex items-baseline justify-between">
-                <span className="text-3xl font-black">Calories</span>
-                <div className="flex items-center gap-2">
-                  <svg className="size-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
+              <div className="border-b-4 border-black py-1">
+                <div className="flex items-baseline justify-between">
+                  <span className="text-sm font-bold">Serving Size</span>
+                  <span className="text-xl font-bold">0g</span>
                 </div>
               </div>
-            </div>
 
-            <div className="border-b border-black py-1 text-right text-xs font-bold">
-              % Daily Value *
-            </div>
-
-            <div className="space-y-1 border-b-4 border-black py-2 text-sm">
-              <div className="flex items-center justify-between border-b border-black py-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-bold">Total Fat</span>
-                  <svg className="size-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
+              <div className="border-b-8 border-black py-1">
+                <div className="flex items-baseline justify-between">
+                  <span className="text-sm font-bold">Amount Per Serving</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg className="size-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
+                <div className="flex items-baseline justify-between">
+                  <span className="text-3xl font-black">Calories</span>
+                  <div className="flex items-center gap-2">
+                    <svg className="size-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
-              <div className="flex justify-between pl-4 text-xs">
-                <span>Saturated Fat 0g</span>
-                <span className="font-bold">0%</span>
-              </div>
-              <div className="flex justify-between pl-4 text-xs italic">
-                <span>Trans Fat 0g</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-black py-1">
-                <span className="font-bold">Cholesterol 0mg</span>
-                <span className="font-bold">0%</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-black py-1">
-                <span className="font-bold">Sodium 0mg</span>
-                <span className="font-bold">0%</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-black py-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-bold">Total Carbohydrate</span>
-                  <svg className="size-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="size-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-              </div>
-              <div className="flex justify-between pl-4 text-xs">
-                <span>Dietary Fiber 0g</span>
-                <span className="font-bold">0%</span>
-              </div>
-              <div className="flex justify-between pl-4 text-xs">
-                <span>Total Sugars 0g</span>
-                <span className="font-bold">0%</span>
-              </div>
-              <div className="flex justify-between border-b border-black py-1 pl-8 text-xs">
-                <span>Includes 0g Added Sugars</span>
-                <span className="font-bold">0%</span>
-              </div>
-              <div className="flex justify-between py-1">
-                <span className="font-bold">Protein 0g</span>
-              </div>
-            </div>
 
-            <div className="space-y-1 border-b-4 border-black py-2 text-xs">
-              <div className="flex justify-between">
-                <span>Vitamin D 0mcg</span>
-                <span className="font-bold">0%</span>
+              <div className="border-b border-black py-1 text-right text-xs font-bold">
+                % Daily Value *
               </div>
-              <div className="flex justify-between">
-                <span>Calcium 0mg</span>
-                <span className="font-bold">0%</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Iron 0mg</span>
-                <span className="font-bold">0%</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Potassium 0mg</span>
-                <span className="font-bold">0%</span>
-              </div>
-            </div>
 
-            <p className="mt-2 text-xs leading-tight">
-              * The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
-            </p>
+              <div className="space-y-1 border-b-4 border-black py-2 text-sm">
+                <div className="flex items-center justify-between border-b border-black py-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold">Total Fat</span>
+                    <svg className="size-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="size-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex justify-between pl-4 text-xs">
+                  <span>Saturated Fat 0g</span>
+                  <span className="font-bold">0%</span>
+                </div>
+                <div className="flex justify-between pl-4 text-xs italic">
+                  <span>Trans Fat 0g</span>
+                </div>
+                <div className="flex items-center justify-between border-b border-black py-1">
+                  <span className="font-bold">Cholesterol 0mg</span>
+                  <span className="font-bold">0%</span>
+                </div>
+                <div className="flex items-center justify-between border-b border-black py-1">
+                  <span className="font-bold">Sodium 0mg</span>
+                  <span className="font-bold">0%</span>
+                </div>
+                <div className="flex items-center justify-between border-b border-black py-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold">Total Carbohydrate</span>
+                    <svg className="size-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="size-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex justify-between pl-4 text-xs">
+                  <span>Dietary Fiber 0g</span>
+                  <span className="font-bold">0%</span>
+                </div>
+                <div className="flex justify-between pl-4 text-xs">
+                  <span>Total Sugars 0g</span>
+                  <span className="font-bold">0%</span>
+                </div>
+                <div className="flex justify-between border-b border-black py-1 pl-8 text-xs">
+                  <span>Includes 0g Added Sugars</span>
+                  <span className="font-bold">0%</span>
+                </div>
+                <div className="flex justify-between py-1">
+                  <span className="font-bold">Protein 0g</span>
+                </div>
+              </div>
+
+              <div className="space-y-1 border-b-4 border-black py-2 text-xs">
+                <div className="flex justify-between">
+                  <span>Vitamin D 0mcg</span>
+                  <span className="font-bold">0%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Calcium 0mg</span>
+                  <span className="font-bold">0%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Iron 0mg</span>
+                  <span className="font-bold">0%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Potassium 0mg</span>
+                  <span className="font-bold">0%</span>
+                </div>
+              </div>
+
+              <p className="mt-2 text-xs leading-tight">
+                * The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
+              </p>
+            </div>
           </div>
-        </div>        )}      </div>
+        )}
+        {' '}
+
+      </div>
     </div>
   );
 };

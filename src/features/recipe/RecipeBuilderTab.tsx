@@ -7,7 +7,7 @@ import { buttonVariants } from '@/components/ui/buttonVariants';
 
 import { IngredientSearch } from './IngredientSearch';
 
-interface Ingredient {
+type Ingredient = {
   id: string;
   fdcId?: number;
   name: string;
@@ -16,7 +16,7 @@ interface Ingredient {
   waste: string;
   grams: number;
   percentage: number;
-}
+};
 
 export const RecipeBuilderTab = () => {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
@@ -63,7 +63,7 @@ export const RecipeBuilderTab = () => {
   };
 
   const updateIngredient = (id: string, field: keyof Ingredient, value: string | number) => {
-    setIngredients(ingredients.map(ing => 
+    setIngredients(ingredients.map(ing =>
       ing.id === id ? { ...ing, [field]: value } : ing,
     ));
   };
@@ -161,7 +161,7 @@ export const RecipeBuilderTab = () => {
             </tr>
 
             {/* Added Ingredients */}
-            {ingredients.map((ingredient) => (
+            {ingredients.map(ingredient => (
               <tr key={ingredient.id} className="border-b border-slate-200">
                 <td className="py-3 pr-4">
                   <div className="flex items-center gap-2">
@@ -177,14 +177,14 @@ export const RecipeBuilderTab = () => {
                   <input
                     type="number"
                     value={ingredient.amount}
-                    onChange={(e) => updateIngredient(ingredient.id, 'amount', e.target.value)}
+                    onChange={e => updateIngredient(ingredient.id, 'amount', e.target.value)}
                     className="w-24 rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   />
                 </td>
                 <td className="py-3 pr-4">
                   <select
                     value={ingredient.unit}
-                    onChange={(e) => updateIngredient(ingredient.id, 'unit', e.target.value)}
+                    onChange={e => updateIngredient(ingredient.id, 'unit', e.target.value)}
                     className="w-24 rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   >
                     <option>g</option>
@@ -200,7 +200,7 @@ export const RecipeBuilderTab = () => {
                     <input
                       type="number"
                       value={ingredient.waste}
-                      onChange={(e) => updateIngredient(ingredient.id, 'waste', e.target.value)}
+                      onChange={e => updateIngredient(ingredient.id, 'waste', e.target.value)}
                       className="w-16 rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                     />
                     <span className="text-sm text-slate-500">%</span>
@@ -210,7 +210,10 @@ export const RecipeBuilderTab = () => {
                   <span className="text-sm text-slate-700">{ingredient.grams.toFixed(2)}</span>
                 </td>
                 <td className="py-3 pr-4">
-                  <span className="text-sm text-slate-700">{ingredient.percentage.toFixed(1)}%</span>
+                  <span className="text-sm text-slate-700">
+                    {ingredient.percentage.toFixed(1)}
+                    %
+                  </span>
                 </td>
                 <td className="py-3">
                   <button
@@ -240,7 +243,10 @@ export const RecipeBuilderTab = () => {
             <span className="text-sm text-slate-700">{totalGrams.toFixed(2)}</span>
           </div>
           <div className="flex-1">
-            <span className="text-sm text-slate-700">{totalPercentage.toFixed(1)}%</span>
+            <span className="text-sm text-slate-700">
+              {totalPercentage.toFixed(1)}
+              %
+            </span>
           </div>
         </div>
       </div>
@@ -325,7 +331,7 @@ export const RecipeBuilderTab = () => {
               <input
                 type="text"
                 value={customIngredientName}
-                onChange={(e) => setCustomIngredientName(e.target.value)}
+                onChange={e => setCustomIngredientName(e.target.value)}
                 placeholder="Enter ingredient name"
                 className="w-full rounded border border-slate-300 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                 autoFocus

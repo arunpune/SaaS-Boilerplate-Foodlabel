@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 
-import { DashboardSidebar } from '@/components/DashboardSidebar';
 import { ChatWidget } from '@/components/ChatWidget';
+import { DashboardSidebar } from '@/components/DashboardSidebar';
 import { buttonVariants } from '@/components/ui/buttonVariants';
 
 export const RecipesPage = () => (

@@ -1,13 +1,8 @@
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 import { IngredientComparisonPage } from '@/features/reports/IngredientComparisonPage';
 
-export async function generateMetadata(props: { params: { locale: string } }) {
-  const t = await getTranslations({
-    locale: props.params.locale,
-    namespace: 'Reports',
-  });
-
+export async function generateMetadata() {
   return {
     title: 'Ingredients Comparison - FoodLabelMaker',
     description: 'Compare ingredients',

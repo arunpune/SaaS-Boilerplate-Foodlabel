@@ -1,11 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { DashboardSidebar } from '@/components/DashboardSidebar';
-import { ChatWidget } from '@/components/ChatWidget';
 import { buttonVariants } from '@/components/ui/buttonVariants';
 import { toast } from '@/components/ui/use-toast';
 
@@ -38,7 +36,7 @@ export const RecipeSetupForm = () => {
     }
 
     setShowFormError(false);
-    
+
     // Save recipe data to localStorage
     const recipeData = {
       recipeName,
@@ -50,13 +48,12 @@ export const RecipeSetupForm = () => {
       usePercent,
     };
     localStorage.setItem('recipeData', JSON.stringify(recipeData));
-    
+
     // Show success toast
     toast({
       title: 'Your recipe has been created successfully!',
-      duration: 3000,
     });
-    
+
     // Navigate after a short delay to allow toast to appear
     setTimeout(() => {
       router.push('/recipe-builder');
@@ -99,7 +96,7 @@ export const RecipeSetupForm = () => {
                     <input
                       type="text"
                       value={recipeName}
-                      onChange={e => {
+                      onChange={(e) => {
                         setRecipeName(e.target.value);
                         if (errors.recipeName) {
                           setErrors({ ...errors, recipeName: false });
@@ -142,7 +139,7 @@ export const RecipeSetupForm = () => {
                   <p className="mb-2 text-xs text-slate-500">Select a category to organize your recipes</p>
                   <select
                     value={category}
-                    onChange={e => {
+                    onChange={(e) => {
                       setCategory(e.target.value);
                       if (errors.category) {
                         setErrors({ ...errors, category: false });

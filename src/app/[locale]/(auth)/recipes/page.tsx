@@ -1,13 +1,8 @@
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 import { RecipesPage } from '@/features/recipe/RecipesPage';
 
-export async function generateMetadata(props: { params: { locale: string } }) {
-  const t = await getTranslations({
-    locale: props.params.locale,
-    namespace: 'Recipe',
-  });
-
+export async function generateMetadata() {
   return {
     title: 'Recipes - FoodLabelMaker',
     description: 'Create FDA compliant nutrition labels',

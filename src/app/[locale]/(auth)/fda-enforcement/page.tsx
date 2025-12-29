@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { fdaApi } from '@/libs/FdaApi';
-import type { FdaEnforcementRecord } from '@/types/FdaApi';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { fdaApi } from '@/libs/FdaApi';
+import type { FdaEnforcementRecord } from '@/types/FdaApi';
 
 export default function FdaEnforcementPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,10 +18,10 @@ export default function FdaEnforcementPage() {
   const handleSearch = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       let response;
-      
+
       switch (searchType) {
         case 'nationwide':
           response = await fdaApi.searchByDistributionPattern('nationwide', 10);
@@ -35,7 +36,7 @@ export default function FdaEnforcementPage() {
           response = await fdaApi.getRecentRecalls(10);
           break;
       }
-      
+
       setResults(response.results);
       setTotalResults(response.meta.results.total);
     } catch (err) {
@@ -49,12 +50,12 @@ export default function FdaEnforcementPage() {
   return (
     <div className="mx-auto max-w-7xl p-6">
       <h1 className="mb-6 text-3xl font-bold">FDA Food Enforcement Reports</h1>
-      
+
       <div className="mb-6 space-y-4 rounded-lg border p-4">
         <div className="flex gap-4">
           <select
             value={searchType}
-            onChange={(e) => setSearchType(e.target.value as any)}
+            onChange={e => setSearchType(e.target.value as any)}
             className="rounded border px-3 py-2"
           >
             <option value="nationwide">Nationwide Distribution</option>
@@ -62,17 +63,17 @@ export default function FdaEnforcementPage() {
             <option value="firm">Recalling Firm</option>
             <option value="recent">Recent Recalls</option>
           </select>
-          
+
           {(searchType === 'product' || searchType === 'firm') && (
             <Input
               type="text"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={e => setSearchTerm(e.target.value)}
               placeholder={`Enter ${searchType === 'product' ? 'product name' : 'firm name'}...`}
               className="flex-1"
             />
           )}
-          
+
           <Button onClick={handleSearch} disabled={loading}>
             {loading ? 'Searching...' : 'Search'}
           </Button>
@@ -88,7 +89,14 @@ export default function FdaEnforcementPage() {
 
       {totalResults > 0 && (
         <p className="mb-4 text-gray-600">
-          Found {totalResults} total results (showing {results.length})
+          Found
+          {' '}
+          {totalResults}
+          {' '}
+          total results (showing
+          {' '}
+          {results.length}
+          )
         </p>
       )}
 
@@ -101,37 +109,63 @@ export default function FdaEnforcementPage() {
               </h3>
               {record.classification && (
                 <span className={`rounded px-2 py-1 text-sm font-medium ${
-                  record.classification === 'Class I' ? 'bg-red-100 text-red-800' :
-                  record.classification === 'Class II' ? 'bg-yellow-100 text-yellow-800' :
-                  'bg-blue-100 text-blue-800'
-                }`}>
+                  record.classification === 'Class I'
+                    ? 'bg-red-100 text-red-800'
+                    : record.classification === 'Class II'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : 'bg-blue-100 text-blue-800'
+                }`}
+                >
                   {record.classification}
                 </span>
               )}
             </div>
-            
+
             <p className="mb-2 text-gray-700">
-              <strong>Product:</strong> {record.product_description || 'N/A'}
+              <strong>Product:</strong>
+              {' '}
+              {record.product_description || 'N/A'}
             </p>
-            
+
             {record.reason_for_recall && (
               <p className="mb-2 text-gray-700">
-                <strong>Reason:</strong> {record.reason_for_recall}
+                <strong>Reason:</strong>
+                {' '}
+                {record.reason_for_recall}
               </p>
             )}
-            
+
             <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
               {record.distribution_pattern && (
-                <p><strong>Distribution:</strong> {record.distribution_pattern}</p>
+                <p>
+                  <strong>Distribution:</strong>
+                  {' '}
+                  {record.distribution_pattern}
+                </p>
               )}
               {record.recall_initiation_date && (
-                <p><strong>Recall Date:</strong> {record.recall_initiation_date}</p>
+                <p>
+                  <strong>Recall Date:</strong>
+                  {' '}
+                  {record.recall_initiation_date}
+                </p>
               )}
               {record.city && record.state && (
-                <p><strong>Location:</strong> {record.city}, {record.state}</p>
+                <p>
+                  <strong>Location:</strong>
+                  {' '}
+                  {record.city}
+                  ,
+                  {' '}
+                  {record.state}
+                </p>
               )}
               {record.recall_number && (
-                <p><strong>Recall #:</strong> {record.recall_number}</p>
+                <p>
+                  <strong>Recall #:</strong>
+                  {' '}
+                  {record.recall_number}
+                </p>
               )}
             </div>
           </div>

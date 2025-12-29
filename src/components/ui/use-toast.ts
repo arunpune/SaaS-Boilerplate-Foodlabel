@@ -6,13 +6,15 @@ const TOAST_LIMIT = 1;
 const TOAST_REMOVE_DELAY = 1000000;
 
 type ToasterToast = ToastProps & {
-  id: string
-  title?: React.ReactNode
-  description?: React.ReactNode
-  action?: ToastActionElement
+  id: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  action?: ToastActionElement;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
-const actionTypes = {
+const _actionTypes = {
   ADD_TOAST: 'ADD_TOAST',
   UPDATE_TOAST: 'UPDATE_TOAST',
   DISMISS_TOAST: 'DISMISS_TOAST',
@@ -26,29 +28,29 @@ function genId() {
   return count.toString();
 }
 
-type ActionType = typeof actionTypes;
+type ActionType = typeof _actionTypes;
 
 type Action =
   | {
-    type: ActionType['ADD_TOAST']
-    toast: ToasterToast
+    type: ActionType['ADD_TOAST'];
+    toast: ToasterToast;
   }
   | {
-    type: ActionType['UPDATE_TOAST']
-    toast: Partial<ToasterToast>
+    type: ActionType['UPDATE_TOAST'];
+    toast: Partial<ToasterToast>;
   }
   | {
-    type: ActionType['DISMISS_TOAST']
-    toastId?: ToasterToast['id']
+    type: ActionType['DISMISS_TOAST'];
+    toastId?: ToasterToast['id'];
   }
   | {
-    type: ActionType['REMOVE_TOAST']
-    toastId?: ToasterToast['id']
+    type: ActionType['REMOVE_TOAST'];
+    toastId?: ToasterToast['id'];
   };
 
-interface State {
-  toasts: ToasterToast[]
-}
+type State = {
+  toasts: ToasterToast[];
+};
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
@@ -89,8 +91,7 @@ export const reducer = (state: State, action: Action): State => {
 
       if (toastId) {
         addToRemoveQueue(toastId);
-      }
-      else {
+      } else {
         state.toasts.forEach((toast) => {
           addToRemoveQueue(toast.id);
         });
@@ -152,7 +153,9 @@ function toast({ ...props }: Toast) {
       id,
       open: true,
       onOpenChange: (open) => {
-        if (!open) dismiss();
+        if (!open) {
+          dismiss();
+        }
       },
     },
   });
@@ -184,4 +187,4 @@ function useToast() {
   };
 }
 
-export { useToast, toast };
+export { toast, useToast };

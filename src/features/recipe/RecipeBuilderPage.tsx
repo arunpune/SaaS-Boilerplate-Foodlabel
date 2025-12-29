@@ -1,11 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { DashboardSidebar } from '@/components/DashboardSidebar';
 import { ChatWidget } from '@/components/ChatWidget';
-import { buttonVariants } from '@/components/ui/buttonVariants';
+import { DashboardSidebar } from '@/components/DashboardSidebar';
 
 import { CustomizeLabelTab } from './CustomizeLabelTab';
 import { NotesAttachmentsTab } from './NotesAttachmentsTab';
@@ -44,13 +42,13 @@ export const RecipeBuilderPage = () => {
     };
 
     window.addEventListener('storage', handleStorageChange);
-    
+
     // Poll for changes (since storage event doesn't fire in same tab)
     const interval = setInterval(() => {
       const updatedData = localStorage.getItem('recipeData');
       if (updatedData) {
         const parsed = JSON.parse(updatedData);
-        setRecipeData(prev => {
+        setRecipeData((prev) => {
           if (JSON.stringify(prev) !== updatedData) {
             return parsed;
           }
@@ -84,7 +82,9 @@ export const RecipeBuilderPage = () => {
                 </svg>
               </button>
               <span className="text-sm text-slate-500">
-                Recipe Code: {recipeData.recipeCode || 'N/A'}
+                Recipe Code:
+                {' '}
+                {recipeData.recipeCode || 'N/A'}
               </span>
             </div>
             <div className="flex items-center gap-2">

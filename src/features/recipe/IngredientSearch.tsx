@@ -1,19 +1,19 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import { Search, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
-interface FoodItem {
+type FoodItem = {
   fdcId: number;
   description: string;
   dataType?: string;
   brandOwner?: string;
-}
+};
 
-interface IngredientSearchProps {
+type IngredientSearchProps = {
   onSelectIngredient: (ingredient: FoodItem) => void;
   onAddCustomIngredient: () => void;
-}
+};
 
 export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: IngredientSearchProps) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,7 +45,7 @@ export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: 
       }
 
       const data = await response.json();
-      
+
       if (data.foods && data.foods.length > 0) {
         const formattedResults = data.foods.map((food: any) => ({
           fdcId: food.fdcId,
@@ -71,12 +71,12 @@ export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
-    
+
     // Clear previous timer
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
     }
-    
+
     // Debounce search
     if (value.length >= 2) {
       debounceTimerRef.current = setTimeout(() => {
@@ -122,10 +122,12 @@ export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: 
           value={searchTerm}
           onChange={handleInputChange}
           onFocus={() => {
-            if (searchResults.length > 0) setShowDropdown(true);
+            if (searchResults.length > 0) {
+              setShowDropdown(true);
+            }
           }}
           placeholder="Add Ingredient"
-          className="w-full rounded border border-slate-300 py-2 pl-10 pr-10 text-sm placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+          className="w-full rounded border border-slate-300 px-10 py-2 text-sm placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
         />
         {searchTerm && (
           <button
@@ -151,11 +153,11 @@ export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: 
               {error}
             </div>
           )}
-          
+
           {!error && searchResults.length > 0 && (
             <>
               <div className="max-h-64 overflow-auto">
-                {searchResults.map((food) => (
+                {searchResults.map(food => (
                   <button
                     key={food.fdcId}
                     type="button"
@@ -167,17 +169,17 @@ export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: 
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-baseline gap-1.5">
                         <span className="text-xs font-semibold text-slate-500">
                           {food.fdcId}
                         </span>
-                        <span className="text-sm font-medium text-slate-900 break-words">
+                        <span className="break-words text-sm font-medium text-slate-900">
                           {food.description}
                         </span>
                       </div>
                       {food.brandOwner && (
-                        <div className="mt-0.5 text-xs text-slate-500 break-words">
+                        <div className="mt-0.5 break-words text-xs text-slate-500">
                           {food.brandOwner}
                         </div>
                       )}
@@ -215,7 +217,7 @@ export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: 
               <div className="px-4 py-8 text-center text-sm text-slate-500">
                 No ingredients found
               </div>
-              
+
               {/* Sticky Bottom Actions */}
               <div className="sticky bottom-0 border-t border-slate-200 bg-white">
                 <div className="flex items-center justify-between px-4 py-2">

@@ -52,7 +52,7 @@ export const NotesAttachmentsTab = () => {
       {/* Additional Recipe Notes */}
       <div>
         <h2 className="mb-4 text-xl font-semibold text-slate-700">Additional Recipe Notes</h2>
-        
+
         {/* Rich Text Editor Toolbar */}
         <div className="rounded-t border border-b-0 border-slate-300 bg-slate-50 px-3 py-2">
           <div className="flex flex-wrap items-center gap-1">
@@ -233,7 +233,7 @@ export const NotesAttachmentsTab = () => {
         {/* Text Area */}
         <textarea
           value={notes}
-          onChange={(e) => setNotes(e.target.value)}
+          onChange={e => setNotes(e.target.value)}
           className="min-h-[300px] w-full rounded-b border border-slate-300 p-4 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
           placeholder="Enter your additional notes here..."
         />
@@ -242,7 +242,7 @@ export const NotesAttachmentsTab = () => {
       {/* Attachments */}
       <div>
         <h2 className="mb-4 text-xl font-semibold text-slate-700">Attachments</h2>
-        
+
         {/* Upload Area */}
         <div
           onDragOver={handleDragOver}
@@ -286,7 +286,11 @@ export const NotesAttachmentsTab = () => {
                   </svg>
                   <div>
                     <p className="text-sm font-medium text-slate-700">{file.name}</p>
-                    <p className="text-xs text-slate-500">{(file.size / 1024).toFixed(2)} KB</p>
+                    <p className="text-xs text-slate-500">
+                      {(file.size / 1024).toFixed(2)}
+                      {' '}
+                      KB
+                    </p>
                   </div>
                 </div>
                 <button

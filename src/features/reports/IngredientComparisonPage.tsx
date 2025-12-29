@@ -1,9 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-
-import { DashboardSidebar } from '@/components/DashboardSidebar';
 import { ChatWidget } from '@/components/ChatWidget';
+import { DashboardSidebar } from '@/components/DashboardSidebar';
 
 export const IngredientComparisonPage = () => (
   <div className="flex min-h-screen">

@@ -1,12 +1,9 @@
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
 
 import { buttonVariants } from '@/components/ui/buttonVariants';
 import { Section } from '@/features/landing/Section';
 
 export const Hero = () => {
-  const t = useTranslations('Hero');
-
   return (
     <Section className="bg-gradient-to-br from-teal-50 via-slate-100 to-teal-100 py-20 md:py-32">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 lg:grid-cols-2">
@@ -15,16 +12,16 @@ export const Hero = () => {
           <h1 className="text-4xl font-bold leading-tight text-teal-700 md:text-5xl lg:text-6xl">
             Easily Analyze Recipes and Create FDA Compliant Nutrition Labels
           </h1>
-          
+
           <p className="text-lg text-gray-600 md:text-xl">
             Save time and money, create your own label in minutes using our 500k+ ingredient database built by certified nutritionists
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row">
             <Link
-              className={buttonVariants({ 
+              className={buttonVariants({
                 size: 'lg',
-                className: 'bg-red-500 hover:bg-red-600 text-white px-8 py-6 text-lg font-semibold'
+                className: 'bg-red-500 hover:bg-red-600 text-white px-8 py-6 text-lg font-semibold',
               })}
               href="/recipe-setup"
             >
@@ -41,19 +38,37 @@ export const Hero = () => {
               <div className="border-b-8 border-black pb-2">
                 <h2 className="text-xl font-bold">Nutrition Facts</h2>
                 <p className="text-xs">1 Serving Per Container</p>
-                <p className="text-sm font-semibold">Serving Size <span className="float-right">250g</span></p>
+                <p className="text-sm font-semibold">
+                  Serving Size
+                  <span className="float-right">250g</span>
+                </p>
               </div>
               <div className="border-b-4 border-black py-1">
                 <p className="text-xs">Amount Per Serving</p>
-                <p className="text-2xl font-bold">Calories <span className="float-right">660</span></p>
+                <p className="text-2xl font-bold">
+                  Calories
+                  <span className="float-right">660</span>
+                </p>
               </div>
               <div className="space-y-1 border-b border-black py-2 text-xs">
-                <p className="font-semibold text-right">% Daily Value *</p>
-                <p className="border-b border-gray-300">Total Fat 52g <span className="float-right font-bold">67%</span></p>
-                <p className="border-b border-gray-300 pl-4">Saturated Fat 13g <span className="float-right font-bold">63%</span></p>
+                <p className="text-right font-semibold">% Daily Value *</p>
+                <p className="border-b border-gray-300">
+                  Total Fat 52g
+                  <span className="float-right font-bold">67%</span>
+                </p>
+                <p className="border-b border-gray-300 pl-4">
+                  Saturated Fat 13g
+                  <span className="float-right font-bold">63%</span>
+                </p>
                 <p className="border-b border-gray-300 pl-4">Trans Fat 0g</p>
-                <p className="border-b border-gray-300">Cholesterol 270mg <span className="float-right font-bold">90%</span></p>
-                <p className="border-b border-gray-300">Sodium 160mg <span className="float-right font-bold">7%</span></p>
+                <p className="border-b border-gray-300">
+                  Cholesterol 270mg
+                  <span className="float-right font-bold">90%</span>
+                </p>
+                <p className="border-b border-gray-300">
+                  Sodium 160mg
+                  <span className="float-right font-bold">7%</span>
+                </p>
               </div>
             </div>
 
@@ -68,8 +83,11 @@ export const Hero = () => {
                 <p className="text-xl font-bold">Calories 660</p>
               </div>
               <div className="space-y-1 text-xs">
-                <p className="text-xs font-semibold text-right">% Daily Value *</p>
-                <p>Fat / Lipides 52 g <span className="float-right font-bold">70%</span></p>
+                <p className="text-right text-xs font-semibold">% Daily Value *</p>
+                <p>
+                  Fat / Lipides 52 g
+                  <span className="float-right font-bold">70%</span>
+                </p>
               </div>
             </div>
           </div>

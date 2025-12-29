@@ -2,20 +2,20 @@
 
 import { useState } from 'react';
 
-interface IngredientCost {
+type IngredientCost = {
   id: string;
   name: string;
   price: string;
   amount: string;
   unit: string;
   costPerBatch: string;
-}
+};
 
-interface OtherCost {
+type OtherCost = {
   id: string;
   description: string;
   cost: string;
-}
+};
 
 export const RecipeCostingTab = () => {
   const [ingredientCosts, setIngredientCosts] = useState<IngredientCost[]>([
@@ -26,14 +26,14 @@ export const RecipeCostingTab = () => {
   const [otherCosts, setOtherCosts] = useState<OtherCost[]>([]);
   const [sellingPrice, setSellingPrice] = useState('');
   const [margin, setMargin] = useState('');
-  
+
   const [isIngredientExpanded, setIsIngredientExpanded] = useState(true);
   const [isOtherCostsExpanded, setIsOtherCostsExpanded] = useState(false);
   const [isSellingPriceExpanded, setIsSellingPriceExpanded] = useState(false);
 
   const updateIngredientCost = (id: string, field: keyof IngredientCost, value: string) => {
-    setIngredientCosts(ingredientCosts.map(item => 
-      item.id === id ? { ...item, [field]: value } : item
+    setIngredientCosts(ingredientCosts.map(item =>
+      item.id === id ? { ...item, [field]: value } : item,
     ));
   };
 
@@ -42,8 +42,8 @@ export const RecipeCostingTab = () => {
   };
 
   const updateOtherCost = (id: string, field: 'description' | 'cost', value: string) => {
-    setOtherCosts(otherCosts.map(item => 
-      item.id === id ? { ...item, [field]: value } : item
+    setOtherCosts(otherCosts.map(item =>
+      item.id === id ? { ...item, [field]: value } : item,
     ));
   };
 
@@ -103,19 +103,23 @@ export const RecipeCostingTab = () => {
                 <thead>
                   <tr className="border-b border-slate-200">
                     <th className="pb-3 pr-4 text-left text-sm font-semibold text-slate-700">
-                      Ingredients<span className="text-red-500">*</span>
+                      Ingredients
+                      <span className="text-red-500">*</span>
                     </th>
                     <th className="pb-3 pr-4 text-left text-sm font-semibold text-slate-700">
                       <div className="flex items-center gap-1">
-                        Price($)<span className="text-red-500">*</span>
+                        Price($)
+                        <span className="text-red-500">*</span>
                         <InfoIcon />
                       </div>
                     </th>
                     <th className="pb-3 pr-4 text-left text-sm font-semibold text-slate-700">
-                      Amount<span className="text-red-500">*</span>
+                      Amount
+                      <span className="text-red-500">*</span>
                     </th>
                     <th className="pb-3 pr-4 text-left text-sm font-semibold text-slate-700">
-                      Unit<span className="text-red-500">*</span>
+                      Unit
+                      <span className="text-red-500">*</span>
                     </th>
                     <th className="pb-3 text-left text-sm font-semibold text-slate-700">
                       <div className="flex items-center gap-1">
@@ -126,7 +130,7 @@ export const RecipeCostingTab = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {ingredientCosts.map((ingredient) => (
+                  {ingredientCosts.map(ingredient => (
                     <tr key={ingredient.id} className="border-b border-slate-100">
                       <td className="py-3 pr-4">
                         <div className="text-sm text-slate-700">{ingredient.name}</div>
@@ -135,7 +139,7 @@ export const RecipeCostingTab = () => {
                         <input
                           type="number"
                           value={ingredient.price}
-                          onChange={(e) => updateIngredientCost(ingredient.id, 'price', e.target.value)}
+                          onChange={e => updateIngredientCost(ingredient.id, 'price', e.target.value)}
                           className="w-24 rounded border border-slate-300 px-2 py-1 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                           placeholder="0.00"
                         />
@@ -145,7 +149,7 @@ export const RecipeCostingTab = () => {
                           <input
                             type="number"
                             value={ingredient.amount}
-                            onChange={(e) => updateIngredientCost(ingredient.id, 'amount', e.target.value)}
+                            onChange={e => updateIngredientCost(ingredient.id, 'amount', e.target.value)}
                             className="w-24 rounded border border-slate-300 px-2 py-1 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                             placeholder="0"
                           />
@@ -155,7 +159,7 @@ export const RecipeCostingTab = () => {
                       <td className="py-3 pr-4">
                         <select
                           value={ingredient.unit}
-                          onChange={(e) => updateIngredientCost(ingredient.id, 'unit', e.target.value)}
+                          onChange={e => updateIngredientCost(ingredient.id, 'unit', e.target.value)}
                           className="w-32 rounded border border-slate-300 px-2 py-1 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                         >
                           <option>grams</option>
@@ -207,19 +211,19 @@ export const RecipeCostingTab = () => {
 
           {isOtherCostsExpanded && (
             <div className="space-y-3 p-4">
-              {otherCosts.map((cost) => (
+              {otherCosts.map(cost => (
                 <div key={cost.id} className="flex items-center gap-3">
                   <input
                     type="text"
                     value={cost.description}
-                    onChange={(e) => updateOtherCost(cost.id, 'description', e.target.value)}
+                    onChange={e => updateOtherCost(cost.id, 'description', e.target.value)}
                     placeholder="Cost description (e.g., Packaging)"
                     className="flex-1 rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   />
                   <input
                     type="number"
                     value={cost.cost}
-                    onChange={(e) => updateOtherCost(cost.id, 'cost', e.target.value)}
+                    onChange={e => updateOtherCost(cost.id, 'cost', e.target.value)}
                     placeholder="0.00"
                     className="w-32 rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   />
@@ -280,7 +284,7 @@ export const RecipeCostingTab = () => {
                   <input
                     type="number"
                     value={sellingPrice}
-                    onChange={(e) => setSellingPrice(e.target.value)}
+                    onChange={e => setSellingPrice(e.target.value)}
                     placeholder="0.00"
                     className="w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   />
@@ -290,7 +294,7 @@ export const RecipeCostingTab = () => {
                   <input
                     type="number"
                     value={margin}
-                    onChange={(e) => setMargin(e.target.value)}
+                    onChange={e => setMargin(e.target.value)}
                     placeholder="0"
                     className="w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   />

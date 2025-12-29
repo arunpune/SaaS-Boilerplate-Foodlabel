@@ -3,7 +3,7 @@
  * API Documentation: https://open.fda.gov/food/enforcement/
  */
 
-export interface FdaEnforcementRecord {
+export type FdaEnforcementRecord = {
   address_1?: string;
   address_2?: string;
   center_classification_date?: string;
@@ -31,9 +31,9 @@ export interface FdaEnforcementRecord {
   status?: string;
   termination_date?: string;
   voluntary_mandated?: string;
-}
+};
 
-export interface FdaApiMeta {
+export type FdaApiMeta = {
   disclaimer: string;
   terms: string;
   license: string;
@@ -43,24 +43,24 @@ export interface FdaApiMeta {
     limit: number;
     total: number;
   };
-}
+};
 
-export interface FdaApiResponse {
+export type FdaApiResponse = {
   meta: FdaApiMeta;
   results: FdaEnforcementRecord[];
-}
+};
 
-export interface FdaApiError {
+export type FdaApiError = {
   error: {
     code: string;
     message: string;
   };
-}
+};
 
-export interface FdaSearchParams {
+export type FdaSearchParams = {
   search?: string;
   limit?: number;
   skip?: number;
   sort?: string;
   count?: string;
-}
+};

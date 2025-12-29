@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export interface RecipeData {
+export type RecipeData = {
   recipeName: string;
   recipeCode: string;
   category: string;
@@ -10,7 +10,7 @@ export interface RecipeData {
   servings: string;
   isLiquid: boolean;
   usePercent: boolean;
-}
+};
 
 const defaultRecipeData: RecipeData = {
   recipeName: '',
@@ -39,7 +39,7 @@ export const RecipeSetupTab = () => {
   const handleSave = () => {
     // Save to localStorage
     localStorage.setItem('recipeData', JSON.stringify(recipeData));
-    
+
     // Show success message
     alert('Recipe saved successfully!');
   };

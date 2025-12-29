@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 
-interface NutrientToggle {
+type NutrientToggle = {
   id: string;
   label: string;
   enabled: boolean;
   hasInfo?: boolean;
-}
+};
 
 export const ShowHideNutrientsContent = () => {
   const [showAllNutrients, setShowAllNutrients] = useState(false);
@@ -116,7 +116,7 @@ export const ShowHideNutrientsContent = () => {
       }`}
     >
       <span
-        className={`inline-block size-4 transform rounded-full bg-white transition-transform ${
+        className={`inline-block size-4 rounded-full bg-white transition-transform${
           enabled ? 'translate-x-6' : 'translate-x-1'
         }`}
       />
@@ -143,7 +143,7 @@ export const ShowHideNutrientsContent = () => {
         <div>
           <h3 className="mb-4 text-base font-semibold text-slate-900">Standard Components</h3>
           <div className="space-y-3">
-            {standardComponents.map((nutrient) => (
+            {standardComponents.map(nutrient => (
               <div key={nutrient.id} className="flex min-w-0 items-center gap-2.5">
                 <ToggleSwitch
                   enabled={nutrient.enabled}
@@ -159,7 +159,7 @@ export const ShowHideNutrientsContent = () => {
         <div>
           <h3 className="mb-4 text-base font-semibold text-slate-900">Vitamins</h3>
           <div className="space-y-3">
-            {vitamins.map((nutrient) => (
+            {vitamins.map(nutrient => (
               <div key={nutrient.id} className="flex min-w-0 items-center gap-2.5">
                 <ToggleSwitch
                   enabled={nutrient.enabled}
@@ -175,7 +175,7 @@ export const ShowHideNutrientsContent = () => {
         <div>
           <h3 className="mb-4 text-base font-semibold text-slate-900">Minerals</h3>
           <div className="space-y-3">
-            {minerals.map((nutrient) => (
+            {minerals.map(nutrient => (
               <div key={nutrient.id} className="flex min-w-0 items-center gap-2.5">
                 <ToggleSwitch
                   enabled={nutrient.enabled}
@@ -191,7 +191,7 @@ export const ShowHideNutrientsContent = () => {
         <div>
           <h3 className="mb-4 text-base font-semibold text-slate-900">Other Nutrients</h3>
           <div className="space-y-3">
-            {otherNutrients.map((nutrient) => (
+            {otherNutrients.map(nutrient => (
               <div key={nutrient.id} className="flex min-w-0 items-center gap-2.5">
                 <ToggleSwitch
                   enabled={nutrient.enabled}
