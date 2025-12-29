@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.0.0...v1.0.1) (2025-12-29)
+
+
+### Bug Fixes
+
+* resolve TypeScript errors and move API keys to env file ([a11c9c6](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/commit/a11c9c6d7196f7a4657e84fdc620fec0cfbf3c08))
+
 # 1.0.0 (2025-11-08)
 
 
