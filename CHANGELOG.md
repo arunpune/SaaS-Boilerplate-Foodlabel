@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.1.1...v1.1.2) (2025-12-29)
+
+
+### Bug Fixes
+
+* resolve post-merge TypeScript errors and missing dependencies ([f7e08fe](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/commit/f7e08fed63fbb2fca355af8bbbedcc705b1c07b9))
+
 ## [1.1.1](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.1.0...v1.1.1) (2025-12-29)
 
 
