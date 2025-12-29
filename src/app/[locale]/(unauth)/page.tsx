@@ -1,15 +1,5 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
-import { CTA } from '@/templates/CTA';
-import { FAQ } from '@/templates/FAQ';
-import { Features } from '@/templates/Features';
-import { Footer } from '@/templates/Footer';
-import { Hero } from '@/templates/Hero';
-import { Navbar } from '@/templates/Navbar';
-import { Pricing } from '@/templates/Pricing';
-import { PromoBanner } from '@/templates/PromoBanner';
-import { Sponsors } from '@/templates/Sponsors';
-
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
     locale: props.params.locale,
@@ -26,17 +16,12 @@ const IndexPage = (props: { params: { locale: string } }) => {
   unstable_setRequestLocale(props.params.locale);
 
   return (
-    <>
-      <PromoBanner />
-      <Navbar />
-      <Hero />
-      <Sponsors />
-      <Features />
-      <Pricing />
-      <FAQ />
-      <CTA />
-      <Footer />
-    </>
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-teal-50 via-slate-100 to-teal-100">
+      <div className="text-center">
+        <h1 className="mb-4 text-5xl font-bold text-teal-700">Welcome to Food Label Maker</h1>
+        <p className="mb-8 text-xl text-gray-600">Create FDA compliant nutrition labels with ease</p>
+      </div>
+    </main>
   );
 };
 
