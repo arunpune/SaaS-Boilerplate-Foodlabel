@@ -3,18 +3,15 @@ import { useTranslations } from 'next-intl';
 
 import { CenteredFooter } from '@/features/landing/CenteredFooter';
 import { Section } from '@/features/landing/Section';
-import { AppConfig } from '@/utils/AppConfig';
-
-import { Logo } from './Logo';
 
 export const Footer = () => {
-  const t = useTranslations('Footer');
+  const t = useTranslations('Navbar');
 
   return (
-    <Section className="pb-16 pt-0">
+    <Section className="bg-secondary pb-16 pt-0">
       <CenteredFooter
-        logo={<Logo />}
-        name={AppConfig.name}
+        logo={<div />}
+        name="FoodLabelMaker Canspririt AI"
         iconList={(
           <>
             <li>
@@ -77,32 +74,36 @@ export const Footer = () => {
         legalLinks={(
           <>
             <li>
-              <Link href="/sign-up">{t('terms_of_service')}</Link>
+              <Link href="/terms">Terms of Service</Link>
             </li>
             <li>
-              <Link href="/sign-up">{t('privacy_policy')}</Link>
+              <Link href="/privacy">Privacy Policy</Link>
             </li>
           </>
         )}
       >
         <li>
-          <Link href="/sign-up">{t('product')}</Link>
+          <Link href="/">{t('home')}</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('docs')}</Link>
+          <Link href="/products/food-nutrition-labelling">{t('products')}</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('blog')}</Link>
+          <Link href="/industries/food-manufacturers">{t('industries')}</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('community')}</Link>
+          <Link href="/pricing">{t('pricing')}</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('company')}</Link>
+          <Link href="/hire-expert">{t('hire_expert')}</Link>
+        </li>
+
+        <li>
+          <Link href="/resources">{t('resources')}</Link>
         </li>
       </CenteredFooter>
     </Section>

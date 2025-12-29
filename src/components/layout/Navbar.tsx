@@ -21,7 +21,7 @@ export const Navbar = () => {
   const t = useTranslations('Navbar');
 
   return (
-    <Section className="px-3 py-6">
+    <Section className="bg-secondary px-3 py-6">
       <CenteredMenu
         logo={<div />}
         rightMenu={(
@@ -39,6 +39,10 @@ export const Navbar = () => {
           </>
         )}
       >
+        <li>
+          <Link href="/">{t('home')}</Link>
+        </li>
+
         <li className="group relative">
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 opacity-60 hover:opacity-100">
