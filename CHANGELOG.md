@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.0.2...v1.1.0) (2026-01-28)
+
+
+### Features
+
+* Add Supabase database integration with recipe management ([f5d92f8](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/commit/f5d92f8abf1aa28cf5187e3a6c9a12d62603b704))
+
 ## [1.0.2](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.0.1...v1.0.2) (2025-12-29)
 
 
