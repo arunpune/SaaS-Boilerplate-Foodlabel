@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.0.2...v1.1.0) (2026-02-14)
+
+
+### Features
+
+* Add dynamic FDA nutrition label with USDA API integration ([194b68d](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/commit/194b68dae4ed9e893e2b2ce3e866ee3b6d5f0660))
+* Add Supabase database integration with recipe management ([f5d92f8](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/commit/f5d92f8abf1aa28cf5187e3a6c9a12d62603b704))
+
 # [1.1.0](https://github.com/arunpune/SaaS-Boilerplate-Foodlabel/compare/v1.0.2...v1.1.0) (2026-01-28)
 
 
