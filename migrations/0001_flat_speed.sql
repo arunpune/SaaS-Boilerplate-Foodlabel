@@ -1,19 +1,19 @@
 CREATE TABLE IF NOT EXISTS "food_label" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"recipe_id" serial NOT NULL,
+	"recipe_id" integer,
 	"user_id" text NOT NULL,
 	"label_type" text NOT NULL,
 	"image_url" text NOT NULL,
 	"image_path" text NOT NULL,
 	"caption" text,
-	"sort_order" serial DEFAULT 0 NOT NULL,
+	"sort_order" integer DEFAULT 0,
 	"updated_at" timestamp DEFAULT now() NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "nutrition" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"recipe_id" serial NOT NULL,
+	"recipe_id" integer NOT NULL,
 	"calories" text,
 	"protein" text,
 	"carbohydrates" text,
@@ -29,12 +29,12 @@ CREATE TABLE IF NOT EXISTS "nutrition" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "recipe_ingredient" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"recipe_id" serial NOT NULL,
+	"recipe_id" integer NOT NULL,
 	"name" text NOT NULL,
 	"quantity" text NOT NULL,
 	"unit" text,
 	"notes" text,
-	"sort_order" serial DEFAULT 0 NOT NULL,
+	"sort_order" integer DEFAULT 0,
 	"updated_at" timestamp DEFAULT now() NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL
 );
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS "recipe" (
 	"user_id" text NOT NULL,
 	"name" text NOT NULL,
 	"description" text,
-	"servings" serial NOT NULL,
-	"prep_time" serial NOT NULL,
-	"cook_time" serial NOT NULL,
+	"servings" integer,
+	"prep_time" integer,
+	"cook_time" integer,
 	"instructions" text,
 	"category" text,
 	"cuisine" text,

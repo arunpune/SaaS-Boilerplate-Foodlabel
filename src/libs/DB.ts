@@ -18,6 +18,7 @@ let drizzle;
 // Need a database for production? Check out https://www.prisma.io/?via=saasboilerplatesrc
 // Tested and compatible with Next.js Boilerplate
 if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD && Env.DATABASE_URL) {
+  console.log('[DB] Using PostgreSQL database');
   client = new Client({
     connectionString: Env.DATABASE_URL,
   });
@@ -27,11 +28,14 @@ if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD && Env.DATABASE_URL) {
   await migratePg(drizzle, {
     migrationsFolder: path.join(process.cwd(), 'migrations'),
   });
+  console.log('[DB] PostgreSQL migrations applied');
 } else {
+  console.log('[DB] Using in-memory PGlite database');
   // Stores the db connection in the global scope to prevent multiple instances due to hot reloading with Next.js
   const global = globalThis as unknown as { client: PGlite; drizzle: PgliteDatabase<typeof schema> };
 
   if (!global.client) {
+    console.log('[DB] Creating new PGlite instance');
     global.client = new PGlite();
     await global.client.waitReady;
 
@@ -39,9 +43,11 @@ if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD && Env.DATABASE_URL) {
   }
 
   drizzle = global.drizzle;
+  console.log('[DB] Applying migrations...');
   await migratePglite(global.drizzle, {
     migrationsFolder: path.join(process.cwd(), 'migrations'),
   });
+  console.log('[DB] PGlite migrations applied successfully');
 }
 
 export const db = drizzle;

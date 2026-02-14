@@ -27,6 +27,8 @@ export async function createRecipeAction(data: {
   isPublic?: boolean;
 }) {
   try {
+    console.log('[Server] Creating recipe:', data);
+
     const [recipe] = await db
       .insert(recipeSchema)
       .values({
@@ -44,12 +46,57 @@ export async function createRecipeAction(data: {
       })
       .returning();
 
+    console.log('[Server] Recipe created:', recipe);
     revalidatePath('/');
 
     return { success: true, recipe };
   } catch (error) {
-    console.error('Error creating recipe:', error);
+    console.error('[Server] Error creating recipe:', error);
     return { success: false, error: 'Failed to create recipe' };
+  }
+}
+
+/**
+ * Server action to update an existing recipe
+ */
+export async function updateRecipeAction(data: {
+  id: number;
+  userId: string;
+  name: string;
+  description?: string;
+  servings?: number;
+  prepTime?: number;
+  cookTime?: number;
+  instructions?: string;
+  category?: string;
+  cuisine?: string;
+  difficulty?: string;
+  isPublic?: boolean;
+}) {
+  try {
+    const [recipe] = await db
+      .update(recipeSchema)
+      .set({
+        name: data.name,
+        description: data.description,
+        servings: data.servings,
+        prepTime: data.prepTime,
+        cookTime: data.cookTime,
+        instructions: data.instructions,
+        category: data.category,
+        cuisine: data.cuisine,
+        difficulty: data.difficulty,
+        isPublic: data.isPublic ? 'true' : 'false',
+      })
+      .where(eq(recipeSchema.id, data.id))
+      .returning();
+
+    revalidatePath('/');
+
+    return { success: true, recipe };
+  } catch (error) {
+    console.error('Error updating recipe:', error);
+    return { success: false, error: 'Failed to update recipe' };
   }
 }
 
@@ -67,6 +114,10 @@ export async function addIngredientsAction(data: {
   }>;
 }) {
   try {
+    console.log('[Server] Adding ingredients to recipe:', data.recipeId);
+    console.log('[Server] Ingredients count:', data.ingredients.length);
+    console.log('[Server] Ingredients data:', data.ingredients);
+
     const ingredients = await db
       .insert(recipeIngredientSchema)
       .values(
@@ -81,12 +132,31 @@ export async function addIngredientsAction(data: {
       )
       .returning();
 
+    console.log('[Server] Ingredients added successfully:', ingredients);
     revalidatePath('/');
 
     return { success: true, ingredients };
   } catch (error) {
-    console.error('Error adding ingredients:', error);
+    console.error('[Server] Error adding ingredients:', error);
     return { success: false, error: 'Failed to add ingredients' };
+  }
+}
+
+/**
+ * Server action to delete all ingredients for a recipe
+ */
+export async function deleteRecipeIngredientsAction(recipeId: number) {
+  try {
+    await db
+      .delete(recipeIngredientSchema)
+      .where(eq(recipeIngredientSchema.recipeId, recipeId));
+
+    revalidatePath('/');
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error deleting ingredients:', error);
+    return { success: false, error: 'Failed to delete ingredients' };
   }
 }
 
@@ -136,14 +206,19 @@ export async function addNutritionAction(data: {
  */
 export async function getUserRecipesAction(userId: string) {
   try {
+    console.log('[Server] Fetching recipes for user:', userId);
+
     const recipes = await db
       .select()
       .from(recipeSchema)
       .where(eq(recipeSchema.userId, userId));
 
+    console.log('[Server] Found recipes:', recipes.length);
+    console.log('[Server] Recipes:', recipes);
+
     return { success: true, recipes };
   } catch (error) {
-    console.error('Error fetching recipes:', error);
+    console.error('[Server] Error fetching recipes:', error);
     return { success: false, error: 'Failed to fetch recipes' };
   }
 }

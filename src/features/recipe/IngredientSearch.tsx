@@ -36,15 +36,23 @@ export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: 
     try {
       // Using USDA FoodData Central API
       const apiKey = process.env.NEXT_PUBLIC_FDA_API_KEY || 'DEMO_KEY';
-      const response = await fetch(
-        `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${apiKey}&query=${encodeURIComponent(query)}&pageSize=10`,
-      );
+      console.log('[IngredientSearch] Searching for:', query);
+      console.log('[IngredientSearch] Using API key:', apiKey === 'DEMO_KEY' ? 'DEMO_KEY' : 'Custom key');
+
+      const url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${apiKey}&query=${encodeURIComponent(query)}&pageSize=10`;
+      console.log('[IngredientSearch] Fetching from USDA API...');
+
+      const response = await fetch(url);
+      console.log('[IngredientSearch] Response status:', response.status);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch food data');
+        const errorText = await response.text();
+        console.error('[IngredientSearch] API Error:', errorText);
+        throw new Error(`API returned ${response.status}: ${errorText}`);
       }
 
       const data = await response.json();
+      console.log('[IngredientSearch] API Response:', data);
 
       if (data.foods && data.foods.length > 0) {
         const formattedResults = data.foods.map((food: any) => ({
@@ -53,14 +61,17 @@ export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: 
           dataType: food.dataType,
           brandOwner: food.brandOwner,
         }));
+        console.log('[IngredientSearch] Found', formattedResults.length, 'results');
         setSearchResults(formattedResults);
         setShowDropdown(true);
       } else {
+        console.log('[IngredientSearch] No results found');
         setSearchResults([]);
         setShowDropdown(true);
       }
     } catch (err) {
-      setError('Failed to search ingredients. Please try again.');
+      console.error('[IngredientSearch] Search failed:', err);
+      setError(`Failed to search: ${err instanceof Error ? err.message : 'Unknown error'}. Try reloading the page.`);
       setSearchResults([]);
       setShowDropdown(true);
     } finally {
@@ -98,10 +109,13 @@ export const IngredientSearch = ({ onSelectIngredient, onAddCustomIngredient }: 
   }, []);
 
   const handleSelectIngredient = (ingredient: FoodItem) => {
+    console.log('[IngredientSearch] Ingredient selected:', ingredient);
+    console.log('[IngredientSearch] Calling onSelectIngredient...');
     onSelectIngredient(ingredient);
     setSearchTerm('');
     setSearchResults([]);
     setShowDropdown(false);
+    console.log('[IngredientSearch] Selection complete, dropdown closed');
   };
 
   const handleClearSearch = () => {

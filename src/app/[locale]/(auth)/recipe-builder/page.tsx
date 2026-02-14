@@ -1,4 +1,5 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
+import { Suspense } from 'react';
 
 import { Toaster } from '@/components/ui/toaster';
 import { RecipeBuilderPage } from '@/features/recipe/RecipeBuilderPage';
@@ -15,7 +16,9 @@ const RecipeBuilder = (props: { params: { locale: string } }) => {
 
   return (
     <>
-      <RecipeBuilderPage />
+      <Suspense fallback={<div>Loading...</div>}>
+        <RecipeBuilderPage />
+      </Suspense>
       <Toaster />
     </>
   );
