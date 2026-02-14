@@ -8,6 +8,9 @@ export type RecipeData = {
   category: string;
   packages: string;
   servings: string;
+  servingType: 'packages' | 'weight';
+  servingWeight: string;
+  servingWeightUnit: string;
   isLiquid: boolean;
   usePercent: boolean;
 };
@@ -18,6 +21,9 @@ const defaultRecipeData: RecipeData = {
   category: '',
   packages: '1',
   servings: '1',
+  servingType: 'packages',
+  servingWeight: '',
+  servingWeightUnit: 'g',
   isLiquid: false,
   usePercent: false,
 };
@@ -35,14 +41,6 @@ export const RecipeSetupTab = () => {
       setRecipeData(JSON.parse(savedData));
     }
   }, []);
-
-  const handleSave = () => {
-    // Save to localStorage
-    localStorage.setItem('recipeData', JSON.stringify(recipeData));
-
-    // Show success message
-    alert('Recipe saved successfully!');
-  };
 
   const updateField = (field: keyof RecipeData, value: string | boolean) => {
     const updatedData = { ...recipeData, [field]: value };
@@ -155,50 +153,109 @@ export const RecipeSetupTab = () => {
             </p>
 
             <div className="space-y-3">
-              <label className="flex items-center gap-3">
+              <label className="flex items-start gap-3">
                 <input
                   type="radio"
                   name="servingType"
-                  defaultChecked
-                  className="size-4 text-teal-600"
+                  checked={recipeData.servingType === 'packages'}
+                  onChange={() => updateField('servingType', 'packages')}
+                  className="mt-0.5 size-4 text-teal-600"
                 />
                 <span className="text-sm font-medium text-slate-700">Specify number of packages and servings</span>
               </label>
-              <label className="flex items-center gap-3">
+
+              {recipeData.servingType === 'packages' && (
+                <div className="ml-7 grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="mb-2 block text-xs text-slate-500">
+                      How many units of sealable items (i.e. bottle or packet) does this recipe make?
+                    </label>
+                    <input
+                      type="number"
+                      value={recipeData.packages}
+                      onChange={e => updateField('packages', e.target.value)}
+                      min="1"
+                      className="w-full rounded border border-slate-300 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-2 block text-xs text-slate-500">
+                      The number of servings that each package of your product has.
+                    </label>
+                    <input
+                      type="number"
+                      value={recipeData.servings}
+                      onChange={e => updateField('servings', e.target.value)}
+                      min="1"
+                      className="w-full rounded border border-slate-300 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+                    />
+                  </div>
+                </div>
+              )}
+
+              <label className="flex items-start gap-3">
                 <input
                   type="radio"
                   name="servingType"
-                  className="size-4 text-teal-600"
+                  checked={recipeData.servingType === 'weight'}
+                  onChange={() => updateField('servingType', 'weight')}
+                  className="mt-0.5 size-4 text-teal-600"
                 />
                 <span className="text-sm font-medium text-slate-700">Specify serving size weight</span>
               </label>
-            </div>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div>
-                <label className="mb-2 block text-xs text-slate-500">
-                  How many units of sealable items (i.e. bottle or packet) does this recipe make?
-                </label>
-                <input
-                  type="number"
-                  value={recipeData.packages}
-                  onChange={e => updateField('packages', e.target.value)}
-                  min="1"
-                  className="w-full rounded border border-slate-300 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
-                />
-              </div>
-              <div>
-                <label className="mb-2 block text-xs text-slate-500">
-                  The number of servings that each package of your product has.
-                </label>
-                <input
-                  type="number"
-                  value={recipeData.servings}
-                  onChange={e => updateField('servings', e.target.value)}
-                  min="1"
-                  className="w-full rounded border border-slate-300 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
-                />
-              </div>
+              {recipeData.servingType === 'weight' && (
+                <div className="ml-7">
+                  <label className="mb-2 block text-xs text-slate-500">
+                    Add recipe serving size...
+                  </label>
+                  <div className="flex gap-2">
+                    <input
+                      type="number"
+                      value={recipeData.servingWeight}
+                      onChange={e => updateField('servingWeight', e.target.value)}
+                      placeholder="30"
+                      className="w-32 rounded border border-slate-300 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+                    />
+                    <select
+                      value={recipeData.servingWeightUnit}
+                      onChange={e => updateField('servingWeightUnit', e.target.value)}
+                      className="w-32 rounded border border-slate-300 px-3 py-2 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+                    >
+                      <optgroup label="Weight Units">
+                        <option>Grams</option>
+                        <option>kg</option>
+                        <option>mg</option>
+                        <option>mcg</option>
+                        <option>lb</option>
+                        <option>oz</option>
+                      </optgroup>
+                      <optgroup label="Volume Units">
+                        <option>l</option>
+                        <option>mL</option>
+                        <option>fl oz</option>
+                        <option>tbsp</option>
+                        <option>tsp</option>
+                        <option>cup</option>
+                        <option>qt</option>
+                        <option>gallon</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <p className="mt-2 flex items-center gap-2 text-xs text-slate-500">
+                    <span className="font-medium">OR</span>
+                    <button type="button" className="text-teal-600 hover:underline">
+                      Find your serving size based on your recipe RACC Category
+                    </button>
+                    <svg className="size-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                  </p>
+                  <p className="mt-1 text-xs italic text-slate-500">
+                    *Only FDA RACC Categories are currently available
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -261,17 +318,6 @@ export const RecipeSetupTab = () => {
             </div>
           </div>
         )}
-      </div>
-
-      {/* Save Button */}
-      <div className="flex justify-center py-4">
-        <button
-          type="button"
-          onClick={handleSave}
-          className="rounded bg-teal-700 px-12 py-2 font-semibold text-white hover:bg-teal-800"
-        >
-          Save
-        </button>
       </div>
     </div>
   );
